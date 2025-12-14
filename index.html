@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenSite</title>
+    <style>
+        /* Reset and global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            padding-top: 80px; /* space for fixed header */
+        }
+
+        /* Hero section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 60vh;
+        }
+
+        .animated-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+            50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffa500; }
+            100% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+        }
+
+        /* About section */
+        .about {
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            margin-top: 40px;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .about p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Slider Section */
+        .slider-section {
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .slider {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        /* Pricing Cards */
+        .pricing-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .pricing-card {
+            background: rgba(10, 10, 20, 0.8);
+            border-radius: 15px;
+            padding: 30px 20px;
+            flex: 1 1 280px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 150, 255, 0.6);
+            border: 1px solid rgba(0,150,255,0.8);
+            transform: perspective(700px) rotateY(0deg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: perspective(700px) rotateY(10deg);
+            box-shadow: 0 0 25px rgba(0,150,255,0.9);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #00bfff;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            margin: 10px 0;
+            color: #ffd700;
+        }
+
+        .pricing-card p {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .contact-cta p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128c7e;
+        }
+
+        /* About more section */
+        .about-more {
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .about-more h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .about-more p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1rem;
+            line-length: 1.5;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 60px 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .reviews h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .reviews-slider {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .review-track {
+            display: flex;
+            animation: scrollReviews 40s linear infinite;
+        }
+
+        .review {
+            flex: 0 0 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            background: rgba(10, 10, 20, 0.7);
+            margin: 0 10px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        @keyframes scrollReviews {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-1000%); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ZenSite</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Inicio / Home -->
+        <section class="hero" id="inicio">
+            <h1 class="animated-title">ZenSite</h1>
+            <p class="tagline">Construimos experiencias web impactantes</p>
+        </section>
+
+        <!-- About / Que es ZenSite -->
+        <section class="about">
+            <h2>¿Qué es ZenSite?</h2>
+            <p>Somos un equipo de desarrollo web dedicado a crear soluciones digitales modernas y personalizadas. Nuestro objetivo es ayudarte a transformar tus ideas en una presencia online atractiva y efectiva.</p>
+        </section>
+
+        <!-- Demo Section -->
+        <section class="slider-section" id="demo">
+            <h2>Demostración de diseños</h2>
+            <div class="slider">
+                <div class="slides">
+                    <img src="demo1.png" alt="Demo 1">
+                    <img src="demo2.png" alt "Demo 2">
+                    <img src="demo3.png" alt "Demo 3">
+                    <img src="demo4.png" alt "Demo 4">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing / Planes Section -->
+        <section class="pricing-cards" id="planes">
+            <h2 style="width:100%; text-align:center; margin-bottom:40px; color:#ffd700;">Nuestros planes</h2>
+            <div class="pricing-card">
+                <h3>Z</h3>
+                <p class="price">$180</p>
+                <p>Ideal para una Home Page profesional, con diseño cuidado y optimizado para tus clientes.</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Z+</h3>
+                <p class="price">$320</p>
+                <p>Perfecto para un sitio web de 3 a 5 páginas, incluye sección de reservas y configuraciones flexibles.</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Z Premium</h3>
+                <p class="price">$580</p>
+                <p>Solución completa para tiendas online: carrito de compras, pasarela de pago, gestión de inventario y más.</p>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta" id="contacto">
+            <h2>¿Listo para empezar?</h2>
+            <p>Contáctanos y descubre cómo podemos ayudarte a tener una presencia online de impacto.</p>
+            <a class="whatsapp-btn" href="https://wa.me/5027942412" target="_blank">WhatsApp: +502 794 2412</a>
+        </section>
+
+        <!-- About more -->
+        <section class="about-more">
+            <h2>Sobre ZenSite</h2>
+            <p>En ZenSite combinamos creatividad y tecnología para desarrollar sitios web que inspiran. Nos apasiona cada proyecto y nos comprometemos a ofrecer un resultado único que refleje la esencia de tu marca.</p>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews">
+            <h2>Reseñas</h2>
+            <div class="reviews-slider">
+                <div class="review-track">
+                    <div class="review">Ana García: “Excelente servicio y atención al detalle.”</div>
+                    <div class="review">Juan Pérez: “Mi página quedó increíble, superó mis expectativas.”</div>
+                    <div class="review">María Rodríguez: “Profesionales y creativos, ¡muy recomendados!”</div>
+                    <div class="review">Carlos López: “Rápidos y con un diseño impecable.”</div>
+                    <div class="review">Sofía Martínez: “Transformaron mi idea en realidad.”</div>
+                    <div class="review">Miguel González: “La mejor inversión que pude hacer.”</div>
+                    <div class="review">Lucía Sánchez: “Quedé encantada con el resultado.”</div>
+                    <div class="review">Diego Torres: “Atentos y muy profesionales en todo momento.”</div>
+                    <div class="review">Valentina Romero: “Mi tienda online funciona perfecta.”</div>
+                    <div class="review">Raúl Cruz: “Recomendados al 100%.”</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ZenSite. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Image slider
+            const slidesContainer = document.querySelector('.slides');
+            if (slidesContainer) {
+                const slides = slidesContainer.querySelectorAll('img');
+                let currentIndex = 0;
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
